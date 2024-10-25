@@ -67,3 +67,41 @@ header {
   border-radius: 100px;
   border: 2px solid black;
 }
+.main-content-page {
+  height: 100vh;
+  display: flex;
+}
+.section-1 {
+  height: 100vh;
+  width: 245px;
+  border-right: 1px solid black;
+}
+.section-2 {
+  height: 100vh;
+  width: calc(100% - 245px);
+  overflow-y: scroll;
+}
+h3 {
+  font-family: logo;
+}
+.list-group-item {
+  height: 80px;
+  border: none;
+}
+.user-img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  background-color: aqua;
+}
+.video-box {
+  height: 200px;
+  background-color: black;
+  margin: 1px;
+}
+.reel-box {
+  height: 90vh;
+  width: 50vh;
+  border-radius: 5px;
+  border: 2px solid black;
+}
