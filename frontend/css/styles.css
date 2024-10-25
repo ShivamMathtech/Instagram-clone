@@ -50,3 +50,20 @@ h2 {
   border: 1px solid black;
   line-height: 10vh;
 }
+header {
+  height: 70px;
+  position: sticky;
+  border-bottom: 1px solid black;
+}
+.forget-form {
+  height: 90vh;
+  width: 70vh;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.circle {
+  height: 100px;
+  width: 100px;
+  border-radius: 100px;
+  border: 2px solid black;
+}
