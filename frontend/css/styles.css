@@ -1,0 +1,46 @@
+.mobile-img-box {
+  height: 100vh;
+  width: 80vh;
+  background-image: url("img/home-phones-2x.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.img-slider-box {
+  height: 75vh;
+  width: 40vh;
+  margin-left: 89px;
+  margin-top: 20px;
+  border-radius: 20px;
+}
+.login-form {
+  height: 75vh;
+  width: 60vh;
+  border: 1px solid black;
+}
+.signup-box {
+  height: 10vh;
+  width: 60vh;
+  border: 1px solid black;
+  line-height: 10vh;
+}
+a {
+  text-decoration: none;
+}
+@font-face {
+  font-family: logo;
+  src: url("fonts/Fontspring-DEMO-blue_vinyl_regular_ps_ot.otf");
+}
+h2 {
+  font-family: logo;
+  font-size: 2.5em;
+}
+.nav-link {
+  color: black;
+  font-size: small;
+}
+.sign-up-form {
+  height: 90vh;
+  width: 60vh;
+  border: 1px solid black;
+}
