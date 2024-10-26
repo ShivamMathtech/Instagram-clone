@@ -32,10 +32,9 @@
       .nav-item {
         margin: 5px;
       }.section {
-    display: none;
-    height: 100vh;
-    background-color: #f4f4f4;
-    transition: opacity 0.5s;
+      display: none;
+       height: 100vh;
+       overflow-y: scroll;    
 }
       .section.active {
     display: block;
@@ -66,7 +65,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="" class="nav-link" data-target="reels">
+              <a href="" class="nav-link reels" data-target="reels">
                 <i class="fa-solid fa-video me-2"></i> Reel
               </a>
             </li>
@@ -105,9 +104,9 @@
           </ul>
         </div>
       </section>
-      <section class="section-2">
+      <section class="section-2 p-0">
         <section class="section active" id="home">
-        <div class="row m-0 p-4">
+        <div class="row m-0 ">
           <div class="col-md-12 p-4">
             <div class="suggetion-users p-4">
               <h6>Suggested for you</h6>
@@ -267,6 +266,47 @@
         <section class="section reels" id="reels">
           <div class="row m-0 p-4">
             <div class="col-md-12 d-flex justify-content-center">
+              <div class="reel-box" id="videoContainer"></div>
+              <div class="sbar ms-2 d-flex align-items-end">
+                <div class="bar">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a href="" class="nav-link">
+                        <i class="fa-regular fa-heart"></i>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="" class="nav-link">
+                        <i class="fa-regular fa-message"></i>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="" class="nav-link">
+                        <i class="fa-regular fa-paper-plane"></i>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="" class="nav-link">
+                        <i class="fa-regular fa-bookmark"></i>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="" class="nav-link">
+                        <i class="fa-solid fa-ellipsis fa-1x"></i>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="" class="nav-link">
+                        <i class="fa-solid fa-user fa-1x"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row m-0 p-4">
+            <div class="col-md-12 d-flex justify-content-center">
               <div class="reel-box"></div>
               <div class="sbar ms-2 d-flex align-items-end">
                 <div class="bar">
@@ -341,10 +381,11 @@
               <div class="col-md-4 d-flex justify-content-end">
                 <!-- <section class="profile-img"> -->
                     <div class="img-box d-flex justify-content-center align-items-center">
-                    <div>
-                     <button class="btn">
-                      <i class="fa-solid fa-camera fa-2x "></i>
-                     </button> 
+                      <div class="box">
+                     <div class="profile-box">
+                     <img id="profileImage" src="" alt="Profile im">
+                    </div>
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
                     </div>
                     </div>
                 <!-- </section> -->
@@ -432,7 +473,75 @@ navLinks.forEach(link => {
         targetSection.classList.add('active');
     });
 });
+// Get the profile image element and the file input element
+const profileImage = document.getElementById('profileImage');
+const fileInput = document.getElementById('fileInput');
 
+// Add click event listener to the profile box
+profileImage.addEventListener('click', () => {
+    // Trigger the file input when the profile image is clicked
+    console.log("hi")
+    fileInput.click();
+});
+
+// Add change event listener to the file input
+fileInput.addEventListener('change', function (e) {
+    // Check if a file was selected
+    if (e.target.files && e.target.files[0]) {
+        const reader = new FileReader();
+
+        // Load the selected image and display it in the profile box
+        reader.onload = function (e) {
+            profileImage.src = e.target.result;
+        };
+
+        // Read the selected image as a Data URL
+        reader.readAsDataURL(e.target.files[0]);
+    }
+});
+
+let reels = document.querySelector(".reels")
+reels.addEventListener("click", function(){
+  console.log("i am clicked")
+  // Fetch the JSON file
+fetch('videos.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json(); // Parse JSON data
+    })
+    .then(data => {
+        const iframeContainer = document.getElementById('videoContainer');
+
+        // Loop through the data and create iframe boxes
+        data.forEach(iframe => {
+            // Create a div for the iframe box
+            const iframeBox = document.createElement('div');
+            iframeBox.className = 'iframe-box';
+
+            // Create an iframe element
+            const iframeElement = document.createElement('iframe');
+            iframeElement.src = iframe.src; // Set iframe source
+
+            // Create a title for the iframe
+            const titleElement = document.createElement('h3');
+            titleElement.textContent = iframe.title;
+
+            // Append title and iframe to the iframe box
+            iframeBox.appendChild(titleElement);
+            iframeBox.appendChild(iframeElement);
+
+            // Append iframe box to the container
+            iframeContainer.appendChild(iframeBox);
+        });
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+
+ 
+})
     </script>
   </body>
 </html>
