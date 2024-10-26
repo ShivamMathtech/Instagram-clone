@@ -105,3 +105,26 @@ h3 {
   border-radius: 5px;
   border: 2px solid black;
 }
+.modal-body {
+  height: 60vh;
+}
+.img-box {
+  height: 100px;
+  width: 100px;
+  background-image: url("img/u223.jpg");
+  background-size: cover;
+  border-radius: 100px;
+  border: 1px solid black;
+}
+a {
+  color: black;
+}
+.highlights {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  border: 1px solid black;
+}
+.profile {
+  height: 100vh;
+}
